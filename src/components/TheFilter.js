@@ -1,8 +1,9 @@
 import React from 'react';
+import './TheFilter.css';
 
 const TheFilter = () => {
   return (
-    <div>I'm Feeling...</div>
+    <div className="filter">I'm Feeling like Coffee</div>
   );
 };
 
