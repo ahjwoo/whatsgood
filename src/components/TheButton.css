@@ -1,0 +1,21 @@
+.thebutton {
+  width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  border-radius: 50%;
+  justify-content: space-evenly;
+  margin-left: auto;
+  margin-right: auto;
+  border: 3px solid black;
+  color: white;
+  user-select: none;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: red;
+  box-shadow: 7px 10px 5px #888888;
+  cursor: pointer;
+}
+.thebutton:active {
+  background-color: #13de10;
+}
