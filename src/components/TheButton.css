@@ -16,6 +16,11 @@
   box-shadow: 7px 10px 5px #888888;
   cursor: pointer;
 }
+.thebutton.loading {
+  background-color: grey;
+  cursor: wait;
+
+}
 .thebutton:active {
   background-color: #13de10;
 }

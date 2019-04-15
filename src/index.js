@@ -3,18 +3,27 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import TheButton from './components/TheButton';
 import TheFilter from './components/TheFilter';
+import TheResults from './components/TheResults';
+import axios from 'axios';
+
+const API_KEY = `${process.env.REACT_APP_API_KEY}`;
+const API = 'https://developers.zomato.com/api/v2.1/search';
+
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isLoading: false,
       lat: null,
       long: null,
       errorMessage: '',
-      filter: 'coffee'
+      term: 'coffee',
+      radius: 10,
+      results: []
     }
     this.handleClick = this.handleClick.bind(this);
-
+    
   }
   
   componentDidMount() {
@@ -30,15 +39,45 @@ class App extends Component {
     )  
   }
 
+  // call yelp api and pass params of lat and long as well as the filter. 
   handleClick() {
-    console.log("im being called, do ajax api here");
+    this.setState({isLoading: true})
+    const config = {
+      headers: {'user-key': API_KEY},
+      params: {
+        q: this.state.term,
+        lat: this.state.lat,
+        lon: this.state.long,
+        radius: this.state.radius
+      }      
+    }
+    axios.get(API, config)
+    .then(response => {
+      // const stuff = JSON.parse(response).restaurant;
+      console.log(response.data.restaurants);
+      this.setState({
+        isLoading: false,
+        results: response.data.restaurants
+
+      }) ;
+    });
+    
   }
   
+
+  // stretch goals
+  // distance setter-slider
+  // filter selection (dropdown?: burger, coffee, smoothie, ramen, surprise me)
+  // display map of the results with info about businesss.
+  // mobile integration: react-native.
+
   render() {
     return (
       <div className="app">
+        <h1>What's Good?</h1>
         <TheFilter />
-        <TheButton whatsGood={this.handleClick} />
+        <TheButton whatsGood={this.handleClick} {...this.state} />
+        <TheResults {...this.state}/>
       </div>
     )
   } 
