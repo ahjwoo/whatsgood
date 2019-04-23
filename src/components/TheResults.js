@@ -16,7 +16,13 @@ class TheResults extends Component {
     let info = []
     let oneItem = []
     for (let i = 0; i < this.props.results.length; i++) {
-      info.push(<div>{this.props.results[i].restaurant.name}</div>)
+      info.push(
+        <div>
+          <div>{this.props.results[i].restaurant.name}</div>
+          <div className="address">{this.props.results[i].restaurant.location.address}</div>
+          <img className="result-image" src={ this.props.results[i].restaurant.featured_image }></img>
+        </div>
+        )
       oneItem = info[Math.floor(Math.random()*info.length)]
       // return <div>{this.props.results[i].restaurant.name}</div>
     } 

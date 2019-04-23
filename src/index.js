@@ -4,6 +4,7 @@ import './index.css';
 import TheButton from './components/TheButton';
 import TheFilter from './components/TheFilter';
 import TheResults from './components/TheResults';
+import Menu from './components/Menu';
 import axios from 'axios';
 
 const API_KEY = `${process.env.REACT_APP_API_KEY}`;
@@ -13,19 +14,20 @@ const API = 'https://developers.zomato.com/api/v2.1/search';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
+    this.state = { 
       isLoading: false,
       lat: null,
       long: null,
       errorMessage: '',
       term: 'coffee',
-      radius: 10,
+      radius: 100,
       results: []
     }
     this.handleClick = this.handleClick.bind(this);
     
   }
   
+
   componentDidMount() {
     window.navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -39,7 +41,7 @@ class App extends Component {
     )  
   }
 
-  // call yelp api and pass params of lat and long as well as the filter. 
+  // call zomato api and pass params of lat and long as well as the filter. 
   handleClick() {
     this.setState({isLoading: true})
     const config = {
@@ -54,7 +56,8 @@ class App extends Component {
     axios.get(API, config)
     .then(response => {
       // const stuff = JSON.parse(response).restaurant;
-      console.log(response.data.restaurants);
+      console.log(response.data.restaurants)
+      // console.log(response.data.restaurants[1].restaurant.location.address);
       this.setState({
         isLoading: false,
         results: response.data.restaurants
@@ -67,15 +70,19 @@ class App extends Component {
 
   // stretch goals
   // distance setter-slider
-  // filter selection (dropdown?: burger, coffee, smoothie, ramen, surprise me)
   // display map of the results with info about businesss.
   // mobile integration: react-native.
 
   render() {
+    const onSearchChange = (event) => {
+      this.setState({term: event.target.value})
+    }
+
+
     return (
       <div className="app">
         <h1>What's Good?</h1>
-        <TheFilter />
+        <TheFilter searchChange={onSearchChange}/>
         <TheButton whatsGood={this.handleClick} {...this.state} />
         <TheResults {...this.state}/>
       </div>

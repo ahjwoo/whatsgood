@@ -1,4 +1,9 @@
 .filter {
   margin: 50px 0;
+}
 
+input {
+  height: 28px;
+  border: 1px solid black;
+  border-radius: 5px;
 }
