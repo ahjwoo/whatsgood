@@ -1,0 +1,7 @@
+.marker {
+  background-image: url('../map-marker.png');
+  background-size: cover;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}

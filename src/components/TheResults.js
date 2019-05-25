@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './TheResults.css'
+import Map from './Map';
 
 class TheResults extends Component {
   shouldComponentUpdate(nextProps, nextState) {
@@ -12,15 +13,17 @@ class TheResults extends Component {
 
   createChildren() {
     // console.log('state', this.props.results[1]. )
-
     let info = []
     let oneItem = []
     for (let i = 0; i < this.props.results.length; i++) {
       info.push(
-        <div>
-          <div>{this.props.results[i].restaurant.name}</div>
-          <div className="address">{this.props.results[i].restaurant.location.address}</div>
-          <img className="result-image" src={ this.props.results[i].restaurant.featured_image }></img>
+        <div className="children-container">
+          <div className="flex-col">
+            {/*<img className="result-image" src={ this.props.results[i].restaurant.featured_image }></img>*/}
+            <div>{this.props.results[i].restaurant.name}</div>
+            <div className="address">{this.props.results[i].restaurant.location.address}</div>
+          </div>
+          <Map {...this.state} longLocation={this.props.results[i].restaurant.location.longitude} latLocation={this.props.results[i].restaurant.location.latitude} />
         </div>
         )
       oneItem = info[Math.floor(Math.random()*info.length)]
@@ -28,7 +31,6 @@ class TheResults extends Component {
     } 
     return oneItem;
   }
-
 
   render() {   
     return (

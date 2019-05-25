@@ -1,7 +1,10 @@
 .results { 
   margin-top: 50px;
   max-width: 500px;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
 }
 .result-image {
   width: 250px;
@@ -9,3 +12,14 @@
 .address {
   margin-top: 10px;
 }
+.children-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+/*.flex-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}*/
