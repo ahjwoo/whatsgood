@@ -20,7 +20,7 @@ class App extends Component {
       long: null,
       errorMessage: '',
       term: 'coffee',
-      radius: 100,
+      radius: 1,
       results: []
     }
     this.handleClick = this.handleClick.bind(this);
@@ -50,7 +50,8 @@ class App extends Component {
         q: this.state.term,
         lat: this.state.lat,
         lon: this.state.long,
-        radius: this.state.radius
+        radius: this.state.radius,
+        count: 5
       }      
     }
     axios.get(API, config)
@@ -84,7 +85,7 @@ class App extends Component {
         <h1>What's Good?</h1>
         <TheFilter searchChange={onSearchChange}/>
         <TheButton whatsGood={this.handleClick} {...this.state} />
-        <TheResults {...this.state}/>
+        <TheResults userLat={this.state.lat} userLong={this.state.long} {...this.state}/>
       </div>
     )
   } 

@@ -5,3 +5,10 @@
   height: 25px;
   cursor: pointer;
 }
+.human-marker {
+  background-image: url('../person.svg');
+  background-size: cover;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}

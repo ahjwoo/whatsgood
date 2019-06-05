@@ -23,7 +23,7 @@ class TheResults extends Component {
             <div>{this.props.results[i].restaurant.name}</div>
             <div className="address">{this.props.results[i].restaurant.location.address}</div>
           </div>
-          <Map {...this.state} longLocation={this.props.results[i].restaurant.location.longitude} latLocation={this.props.results[i].restaurant.location.latitude} />
+          <Map {...this.state} userLat={this.props.userLat} userLong={this.props.userLong} longLocation={this.props.results[i].restaurant.location.longitude} latLocation={this.props.results[i].restaurant.location.latitude} />
         </div>
         )
       oneItem = info[Math.floor(Math.random()*info.length)]
